@@ -32,7 +32,7 @@ public class SearchTime {
         }
 
         executorService.shutdown();
-        executorService.awaitTermination(1, TimeUnit.MINUTES);
+
     }
     private static void randomInitialize(Array... arrays) {
         Random random = new Random();
