@@ -2,7 +2,7 @@ package ru.geekbrains.datastructure.lesson4.linkedlist;
 
 import ru.geekbrains.datastructure.lesson2.ICollection;
 
-public interface LinkedList<E> extends ICollection/*, Iterable<E>*/ {
+public interface LinkedList<E> extends ICollection, Iterable<E> {
 
     void insertFirst(E value);
 

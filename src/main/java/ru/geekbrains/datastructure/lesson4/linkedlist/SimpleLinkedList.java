@@ -1,5 +1,7 @@
 package ru.geekbrains.datastructure.lesson4.linkedlist;
 
+import java.util.Iterator;
+
 public class SimpleLinkedList<E> implements LinkedList<E> {
 
     protected Entry<E> firstElement;
@@ -92,5 +94,41 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     @Override
     public E getFirstValue() {
         return firstElement != null ? firstElement.value : null;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIterator <E>(this);
+    }
+
+    private class LinkedListIterator<E> implements Iterator<E> {
+
+        private SimpleLinkedList<E> list;
+        private Entry<E> current;
+        private Entry<E> previos;
+
+        public LinkedListIterator(SimpleLinkedList<E> list) {
+            this.list = list;
+            reset();
+        }
+
+        private void reset() {
+            current = list.firstElement;
+            previos = null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+
+            E nextValue = current.value;
+            previos = current;
+            current = current.next;
+            return nextValue;
+        }
     }
 }
