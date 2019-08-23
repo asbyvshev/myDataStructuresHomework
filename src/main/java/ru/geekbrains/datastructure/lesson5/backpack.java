@@ -20,9 +20,10 @@ public class backpack {
         this.AllThings = Arrays.asList(things);
     }
 
+
     public void stack(){
 
-        bestStack(AllThings);
+        stack(AllThings);
 
         for (thing t:result) {
             System.out.println(t.getName() + " вес: " + t.getWeight()
@@ -30,7 +31,7 @@ public class backpack {
         }
     }
 
-    public void bestStack(List<thing> things){
+    public void stack(List<thing> things){
 
         if (things.size() > 0){
             bestStack(things);
@@ -39,13 +40,29 @@ public class backpack {
         for (int i = 0; i < things.size(); i++){
             List<thing> list = new ArrayList<>();
             list.remove(i);
-            bestStack(list);
+            stack(list);
         }
 
     }
 
-
-    public void info(){
+    private void bestStack(List<thing> things) {
 
     }
+
+    private int calcWeigth (List<thing> things){
+        int sumWeigth = 0;
+        for (thing t: things) {
+            sumWeigth += t.getWeight();
+        }
+        return sumWeigth;
+    }
+
+    private int calcPrice (List<thing> things){
+        int sumPrice = 0;
+        for (thing t: things) {
+            sumPrice += t.getPrice();
+        }
+        return sumPrice;
+    }
+
 }
