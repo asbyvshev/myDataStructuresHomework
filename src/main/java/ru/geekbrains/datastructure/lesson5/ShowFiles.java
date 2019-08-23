@@ -5,8 +5,8 @@ import java.io.File;
 public class ShowFiles {
 
     public static void main(String[] args) {
-        File root = new File("c:\\Users\\OKrylov\\Google Диск\\My Library\\");
-        viewDir("", root);
+//        File root = new File("c:\\Users\\OKrylov\\Google Диск\\My Library\\");
+//        viewDir("", root);
     }
 
     private static void viewDir(String prefix, File root) {

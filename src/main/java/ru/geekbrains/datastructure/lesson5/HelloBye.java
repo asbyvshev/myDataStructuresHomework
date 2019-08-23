@@ -1,9 +1,8 @@
 package ru.geekbrains.datastructure.lesson5;
 
 public class HelloBye {
-
     public static void main(String[] args) {
-        hello("Artem");
+    hello("Artem");
     }
 
     private static void hello(String name) {
@@ -18,4 +17,5 @@ public class HelloBye {
     private static void print(String message) {
         System.out.println(message);
     }
+
 }
