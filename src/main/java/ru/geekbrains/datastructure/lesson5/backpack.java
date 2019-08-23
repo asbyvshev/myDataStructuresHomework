@@ -13,26 +13,39 @@ public class backpack {
     }
 
     private int maxPrice;
-    private List<thing> things = new ArrayList<thing>();
+    private List<thing> AllThings = new ArrayList<thing>();
     private List<thing> result = null;
 
     public backpack(thing ... things) {
-        this.things = Arrays.asList(things);
+        this.AllThings = Arrays.asList(things);
     }
 
     public void stack(){
-        if (things.size() > 0){
 
-        }
+        bestStack(AllThings);
 
-    }
-
-    private void rotate(int length){}
-
-    public void info(){
         for (thing t:result) {
             System.out.println(t.getName() + " вес: " + t.getWeight()
                     + " цена: " + t.getPrice());
         }
+    }
+
+    public void bestStack(List<thing> things){
+
+        if (things.size() > 0){
+            bestStack(things);
+        }
+
+        for (int i = 0; i < things.size(); i++){
+            List<thing> list = new ArrayList<>();
+            list.remove(i);
+            bestStack(list);
+        }
+
+    }
+
+
+    public void info(){
+
     }
 }
