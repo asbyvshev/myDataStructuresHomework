@@ -6,8 +6,10 @@ public class homework5 {
 
         int number = 3;
         int extent = 2;
-
+        System.out.println("____tast1____ \n");
         System.out.println(myExponentiation(number,extent));
+        System.out.println("____tast2____ \n");
+
 
         thing book = new thing("Книга",1,600);
         thing binoculars = new thing("Бинокль",2,5000);

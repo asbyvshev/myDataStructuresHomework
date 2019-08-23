@@ -38,7 +38,7 @@ public class backpack {
         }
 
         for (int i = 0; i < things.size(); i++){
-            List<thing> list = new ArrayList<>();
+            List<thing> list = new ArrayList<>(things);
             list.remove(i);
             stack(list);
         }
@@ -46,7 +46,17 @@ public class backpack {
     }
 
     private void bestStack(List<thing> things) {
-
+        if (result == null){
+            if (calcWeigth(things) <= MAX_WEIGHT){
+                result = things;
+                maxPrice = calcPrice(things);
+            }
+        } else {
+           if (calcWeigth(things) <= MAX_WEIGHT && calcPrice(things) > maxPrice){
+               result = things;
+               maxPrice = calcPrice(things);
+           }
+        }
     }
 
     private int calcWeigth (List<thing> things){
