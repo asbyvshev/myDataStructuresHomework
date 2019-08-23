@@ -13,11 +13,11 @@ public class backpack {
     }
 
     private int maxPrice;
-    private List<thing> AllThings = new ArrayList<thing>();
+    private List<thing> AllThings;
     private List<thing> result = null;
 
     public backpack(thing ... things) {
-        this.AllThings = Arrays.asList(things);
+        this.AllThings = new ArrayList<>(Arrays.asList(things));
     }
 
 
