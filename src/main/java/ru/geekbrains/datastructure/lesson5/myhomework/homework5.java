@@ -1,4 +1,4 @@
-package ru.geekbrains.datastructure.lesson5;
+package ru.geekbrains.datastructure.lesson5.myhomework;
 
 public class homework5 {
 
