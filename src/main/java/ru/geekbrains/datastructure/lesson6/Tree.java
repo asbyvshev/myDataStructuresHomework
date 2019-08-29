@@ -18,7 +18,9 @@ public interface Tree<E> extends ICollection, Iterable<E> {
 
     void display();
 
-    boolean isBalanced();
+    boolean isBalanced(Node node);
+
+    int height();
 
     void traverse(TraverseMode mode);
 }
