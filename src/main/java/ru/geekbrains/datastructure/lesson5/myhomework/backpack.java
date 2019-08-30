@@ -1,4 +1,4 @@
-package ru.geekbrains.datastructure.lesson5;
+package ru.geekbrains.datastructure.lesson5.myhomework;
 
 import java.util.ArrayList;
 import java.util.Arrays;
