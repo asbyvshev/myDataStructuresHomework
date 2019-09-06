@@ -40,5 +40,19 @@ public class myDz {
     }
 
     private static String ShowShortPath(Stack<String> path) {
+
+        StringBuilder sb = new StringBuilder();
+        boolean isFist = true;
+
+        while (!path.isEmpty()){
+
+            if (!isFist){
+                sb.append(" -> ");
+            }
+
+            isFist = false;
+            sb.append(path.pop());
+        }
+        return String.valueOf(sb);
     }
 }
