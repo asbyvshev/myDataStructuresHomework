@@ -153,7 +153,47 @@ public class Graph {
         vertex.setVisited(true);
     }
 
-//    public Stack<String> findShortPath(String startPoint, String finishPoint) {
-//
-//    }
+    public Stack<String> findShortPath(String startLabel, String finishLabel) {
+        int startIndex = indexOf(startLabel);
+        int finishIndex = indexOf(finishLabel);
+
+        if (startIndex == -1) {
+            throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
+        }
+        if (startIndex == -1) {
+            throw new IllegalArgumentException("Invalid startLabel: " + finishIndex);
+        }
+
+        Queue<Vertex> queue = new LinkedList<>();
+
+        Vertex vertex = vertexList.get(startIndex);
+        visitVertex(queue, vertex);
+
+        while ( !queue.isEmpty() ) {
+            vertex = getNearUnvisitedVertex(queue.peek());
+            if (vertex != null) {
+                visitVertex(queue, vertex);
+                vertex.setPreviosVertex(queue.peek());
+                if (vertex.getLabel().equals(finishLabel)){
+                    return stackPath(vertex);
+                }
+            }
+            else {
+                queue.remove();
+            }
+        }
+
+        resetVertexState();
+        return null;
+    }
+
+    private Stack<String> stackPath(Vertex vertex) {
+        Stack<String> stack = new Stack<>();
+        Vertex current = vertex;
+        while (current != null) {
+            stack.push(current.getLabel());
+            current = current.getPreviosVertex();
+        }
+        return stack;
+    }
 }

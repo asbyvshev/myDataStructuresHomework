@@ -34,7 +34,10 @@ public class myDz {
         graph.addEdge("Орел", "Курск");
         graph.addEdge("Курск", "Воронеж");
 
-        Stack<String> path = graph.findShortPath("Москва","Воронеж");
+//        Stack<String> path = graph.findShortPath("Москва","Воронеж");
+//        Stack<String> path = graph.findShortPath("Тамбов","Воронеж");
+        Stack<String> path = graph.findShortPath("Орел","Липецк");
+        System.out.println();
 
         System.out.println("Крадчайщий путь: " + ShowShortPath(path));
     }
