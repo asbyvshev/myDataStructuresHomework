@@ -3,9 +3,9 @@ package ru.geekbrains.datastructure.lesson7;
 public class Main7 {
 
     public static void main(String[] args) {
-//        testGraph();
+        testGraph();
 //        testDfs();
-        testBfs();
+//        testBfs();
     }
 
     private static void testGraph() {
