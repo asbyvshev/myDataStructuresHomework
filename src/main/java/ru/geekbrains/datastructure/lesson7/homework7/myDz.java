@@ -2,6 +2,8 @@ package ru.geekbrains.datastructure.lesson7.homework7;
 
 import ru.geekbrains.datastructure.lesson7.Graph;
 
+import java.util.Stack;
+
 public class myDz {
     public static void main(String[] args) {
         Graph graph = new Graph(10);
@@ -32,6 +34,11 @@ public class myDz {
         graph.addEdge("Орел", "Курск");
         graph.addEdge("Курск", "Воронеж");
 
+        Stack<String> path = graph.findShortPath("Москва","Воронеж");
 
+        System.out.println("Крадчайщий путь: " + ShowShortPath(path));
+    }
+
+    private static String ShowShortPath(Stack<String> path) {
     }
 }

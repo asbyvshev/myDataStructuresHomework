@@ -153,4 +153,7 @@ public class Graph {
         vertex.setVisited(true);
     }
 
+    public Stack<String> findShortPath(String startPoint, String finishPoint) {
+
+    }
 }
