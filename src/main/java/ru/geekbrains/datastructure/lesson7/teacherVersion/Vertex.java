@@ -1,10 +1,11 @@
-package ru.geekbrains.datastructure.lesson7;
+package ru.geekbrains.datastructure.lesson7.teacherVersion;
 
 public class Vertex {
 
     private final String label;
     private boolean visited;
-    private Vertex previosVertex;
+
+    private ru.geekbrains.datastructure.lesson7.homework7.Vertex previousVertex;
 
     public Vertex(String label) {
         this.label = label;
@@ -29,11 +30,11 @@ public class Vertex {
         return visited;
     }
 
-    public Vertex getPreviosVertex() {
-        return previosVertex;
+    public ru.geekbrains.datastructure.lesson7.homework7.Vertex getPreviousVertex() {
+        return previousVertex;
     }
 
-    public void setPreviosVertex(Vertex previosVertex) {
-        this.previosVertex = previosVertex;
+    public void setPreviousVertex(ru.geekbrains.datastructure.lesson7.homework7.Vertex previousVertex) {
+        this.previousVertex = previousVertex;
     }
 }

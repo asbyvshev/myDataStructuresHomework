@@ -1,4 +1,4 @@
-package ru.geekbrains.datastructure.lesson7;
+package ru.geekbrains.datastructure.lesson7.homework7;
 
 import java.util.*;
 
