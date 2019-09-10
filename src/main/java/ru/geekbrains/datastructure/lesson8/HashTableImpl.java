@@ -2,7 +2,7 @@ package ru.geekbrains.datastructure.lesson8;
 
 import java.util.Optional;
 
-public class HashTableImpl<K, V> implements HashTable<K, V> {
+public class    HashTableImpl<K, V> implements HashTable<K, V> {
 
     private static class Node<K, V> implements Entry<K, V> {
         private K key;
@@ -45,6 +45,23 @@ public class HashTableImpl<K, V> implements HashTable<K, V> {
 
     private Node<K, V>[] data;
     private int size;
+
+    public Node<K, V>[] getData() {
+        return data;
+    }
+
+    public void setData(Node<K, V>[] data) {
+        this.data = data;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     private int maxSize;
 
     @SuppressWarnings("unchecked")
