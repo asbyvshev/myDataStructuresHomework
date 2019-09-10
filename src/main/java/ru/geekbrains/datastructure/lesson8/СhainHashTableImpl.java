@@ -1,5 +1,7 @@
 package ru.geekbrains.datastructure.lesson8;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
@@ -44,7 +46,7 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     private static final int DOUBLE_HASH_CONST = 5;
 
-    private Node<K, V>[] data;
+    private List <Node<K,V>>[] data;
     private int size;
 
     private int maxSize;
@@ -52,7 +54,7 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
     @SuppressWarnings("unchecked")
     public СhainHashTableImpl(int maxSize) {
         this.maxSize = maxSize;
-        this.data = new Node[maxSize * 2];
+        this.data = new List[maxSize * 2];
     }
 
     private int hashFunc(K key) {
@@ -66,52 +68,98 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
             return false;
         }
         int index = hashFunc(key);
-        while (data[index] != null) {
-            if (data[index].key.equals(key)) {
-                data[index].value = value;
+
+        while (!data[index].isEmpty()) {
+            for (Object node:data[index]) {
+                Node n = (Node) node;
+                if (n.key.equals(key)) {
+                    n.setValue(value);
+                } else {
+                     data[index].add(new Node<>(key, value));
+                }
                 return true;
             }
+
             index += getStep(key);
             index %= data.length;//if (index == data.length) index = 0;
         }
 
-        data[index] = new Node<>(key, value);
+        data[index] = new LinkedList<Node<K,V>>();
+        data[index].add(new Node<K,V>(key, value));
         size++;
+
         return true;
     }
 
     @Override
     public V get(K key) {
-        return getEntry(key)
-                .map(Node::getValue)
-                .orElse(null);
-
-        //Entry entry = getEntry(key);
-        //return entry != null ? entry.value : null;
-    }
-
-    private Optional<Node<K, V>> getEntry(K key) {
-        int index = indexOf(key);
-        if (index != -1) {
-            return Optional.of(data[index]);
-        }
-
-        return Optional.empty();
-    }
-
-    private int indexOf(K key) {
         int index = hashFunc(key);
-        while (data[index] != null) {
-            Node current = data[index];
-            if (current.getKey().equals(key)) {
-                return index;
-            }
-            index += getStep(key);
-            index %= data.length;
-        }
-
-        return -1;
+        return getEntry(data[index],key);
     }
+
+    private V getEntry(List list,K key){
+        for (Object node:list) {
+            Node n = (Node) node;
+            if (n.key.equals(key))
+                return (V) n.getValue();
+        }
+        return null;
+    }
+
+
+    /**
+     * мой пробный вариант через Optional
+     *   @Override
+     *     public V get(K key) {
+     *         int index = hashFunc(key);
+     *         return getEntry(data[index],key)
+     *                 .map(Node::getValue)
+     *                 .orElse(null);
+     *         //get(data[index],key);
+     *     }
+     *
+     *     private Optional<Node<K, V>> getEntry(List list,K key){
+     *         for (Object node:list) {
+     *             Node n = (Node) node;
+     *             if (n.key.equals(key))
+     *                 return Optional.empty();//(V) n.getValue();
+     *         }
+     *         return null;
+     *     }
+     */
+
+//    @Override
+//    public V get(K key) {
+//        return getEntry(key)
+//                .map(Node::getValue)
+//                .orElse(null);
+//
+//        //Entry entry = getEntry(key);
+//        //return entry != null ? entry.value : null;
+//    }
+
+//    private Optional<Node<K, V>> getEntry(K key) {
+//        int index = indexOf(key);
+//        if (index != -1) {
+//            return Optional.of(data[index]);
+//        }
+//
+//        return Optional.empty();
+//    }
+//
+//    private int indexOf(K key) {
+//        int index = hashFunc(key);
+//        while (data[index] != null) {
+//            Node current = data[index];
+//            if (current.getKey().equals(key)) {
+//                return index;
+//            }
+//            index += getStep(key);
+//            index %= data.length;
+//        }
+//
+//        return -1;
+//    }
 
     @Override
     public boolean contains(K key) {
@@ -120,16 +168,21 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     @Override
     public V remove(K key) {
-        int index = indexOf(key);
-        if (index == -1) {
-            return null;
-        }
-
-        V result = data[index].getValue();
-        data[index] = null;
-        size--;
-        return result;
+        return null;
     }
+
+//    @Override
+//    public V remove(K key) {
+//        int index = indexOf(key);
+//        if (index == -1) {
+//            return null;
+//        }
+//
+//        V result = data[index].getValue();
+//        data[index] = null;
+//        size--;
+//        return result;
+//    }
 
     @Override
     public boolean isEmpty() {
@@ -148,12 +201,12 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     @Override
     public void display() {
-        System.out.println("---------");
-        for (int i = 0; i < data.length; i++) {
-            System.out.printf("%d = [%s]", i, data[i]);
-            System.out.println();
-        }
-        System.out.println("---------");
+//        System.out.println("---------");
+//        for (int i = 0; i < data.length; i++) {
+//            System.out.printf("%d = [%s]", i, data[i]);
+//            System.out.println();
+//        }
+//        System.out.println("---------");
     }
 
     protected int getStep(K key) {
