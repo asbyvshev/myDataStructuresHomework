@@ -1,5 +1,6 @@
 package ru.geekbrains.datastructure.lesson8;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -63,25 +64,29 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+
         if (isFull()) {
             //rehash()
             return false;
         }
+
         int index = hashFunc(key);
 
-        while (!data[index].isEmpty()) {
-            for (Object node:data[index]) {
-                Node n = (Node) node;
-                if (n.key.equals(key)) {
-                    n.setValue(value);
-                } else {
-                     data[index].add(new Node<>(key, value));
+        if (data[index]!=null){
+            while (!data[index].isEmpty()) {
+                for (Object node:data[index]) {
+                    Node n = (Node) node;
+                    if (n.key.equals(key)) {
+                        n.setValue(value);
+                    } else {
+                        data[index].add(new Node<>(key, value));
+                    }
+                    return true;
                 }
-                return true;
-            }
 
-            index += getStep(key);
-            index %= data.length;//if (index == data.length) index = 0;
+                index += getStep(key);
+                index %= data.length;//if (index == data.length) index = 0;
+            }
         }
 
         data[index] = new LinkedList<Node<K,V>>();
@@ -201,12 +206,22 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     @Override
     public void display() {
-//        System.out.println("---------");
-//        for (int i = 0; i < data.length; i++) {
-//            System.out.printf("%d = [%s]", i, data[i]);
-//            System.out.println();
-//        }
-//        System.out.println("---------");
+        int count = 0;
+        System.out.println("---------");
+        for (int index = 0; index < data.length; index++) {
+
+            if (data[index]!= null){
+                Iterator <Node<K,V>> itr = data[index].iterator();
+                while (itr.hasNext()){
+                    System.out.printf("%d, %d = [%s]", index, count++, itr.next());
+                    System.out.println();
+                }
+            } else {
+                System.out.printf("%d, %d = [%s]", index, count++, data[index]);
+                System.out.println();
+            }
+        }
+        System.out.println("---------");
     }
 
     protected int getStep(K key) {
