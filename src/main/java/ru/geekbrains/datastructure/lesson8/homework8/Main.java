@@ -21,8 +21,9 @@ public class Main {
         hashTable.put(milk, milk.cost);
         hashTable.put(potato, potato.cost);
 
-//        System.out.println("Size is " + hashTable.size());
-//        hashTable.remove(milk);
+        System.out.println("Size is " + hashTable.size());
+        hashTable.remove(milk);
+        System.out.println("Size is " + hashTable.size());
         hashTable.display();
     }
 }

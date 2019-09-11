@@ -80,6 +80,7 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
                         n.setValue(value);
                     } else {
                         data[index].add(new Node<>(key, value));
+                        size++;
                     }
                     return true;
                 }
@@ -173,6 +174,18 @@ public class СhainHashTableImpl<K, V> implements HashTable<K, V> {
 
     @Override
     public V remove(K key) {
+        if (contains(key)){
+            List list = data[hashFunc(key)];
+            for (Object node:list) {
+                Node n = (Node) node;
+                if (n.key.equals(key)){
+                    V result = (V) n.getValue();
+                    list.remove(n);
+                    size--;
+                    return result;
+                }
+            }
+        }
         return null;
     }
 
